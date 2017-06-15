@@ -3,8 +3,9 @@ package tp1;
 import java.util.Random;
 
 import tp2.Figure;
+import tp2.Surfacable;
 
-public class Rond extends Figure{
+public class Rond extends Figure implements Surfacable{
 int r;
 Point p;
 public Rond(int r, Point p) {
@@ -34,5 +35,10 @@ protected Figure getRandomFigure() {
 protected String getType() {
 	// TODO Auto-generated method stub
 	return "ROND";
+}
+@Override
+public double surface() {
+	// TODO Auto-generated method stub
+	return Math.PI*Math.pow(r, 2);
 }
 }

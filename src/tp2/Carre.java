@@ -4,7 +4,7 @@ import java.util.Random;
 
 import tp1.Point;
 
-public class Carre extends Figure{
+public class Carre extends Figure implements Surfacable{
 	private int x;
 	private Point p;
 	public Carre(int x, Point p) {
@@ -33,6 +33,13 @@ public class Carre extends Figure{
 	protected String getType() {
 		// TODO Auto-generated method stub
 		return "CARRE";
+	}
+	@Override
+	public double surface() {
+		return Math.pow(Math.abs(this.x), 2);
+		
+		// TODO Auto-generated method stub
+		
 	}
 
 	/*public Carre(Point p, int x1, int y1) {

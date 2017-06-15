@@ -3,8 +3,9 @@ package tp1;
 import java.util.Random;
 
 import tp2.Figure;
+import tp2.Surfacable;
 
-public class Rectangle extends Figure{
+public class Rectangle extends Figure implements Surfacable{
 	Point p;
 	int x1,y1;
 	
@@ -62,6 +63,14 @@ public class Rectangle extends Figure{
 		Random rd=new Random();
 		// TODO Auto-generated method stub
 		return new Rectangle(new Point(rd.nextInt(), rd.nextInt()), rd.nextInt(), rd.nextInt());
+	}
+
+
+	@Override
+	public double surface() {
+		
+		// TODO Auto-generated method stub
+	return Math.abs(this.x1*this.y1);
 	}
 	
 	
