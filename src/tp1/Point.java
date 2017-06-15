@@ -4,8 +4,8 @@ import java.util.Random;
 
 import tp2.Figure;
 
-public class Point extends Figure{
-	int x,y;
+public class Point extends Figure {
+	private int x, y;
 
 	public Point(int x, int y) {
 		this.x = x;
@@ -24,15 +24,17 @@ public class Point extends Figure{
 	public String toString() {
 		return "[" + x + ", " + y + "]";
 	}
-	
-	public boolean isEgal(Point point){
-		if(this.x==point.getX() && this.y==point.getY()) return true;
-		else return false;
+
+	public boolean isEgal(Point point) {
+		if (this.x == point.getX() && this.y == point.getY())
+			return true;
+		else
+			return false;
 	}
 
 	@Override
 	protected Figure getRandomFigure() {
-		Random rd=new Random();
+		Random rd = new Random();
 		// TODO Auto-generated method stub
 		return new Point(rd.nextInt(), rd.nextInt());
 	}
@@ -47,11 +49,7 @@ public class Point extends Figure{
 	protected void affiche() {
 		System.out.println(this.toString());
 		// TODO Auto-generated method stub
-		
+
 	}
 
-
-	
-	
-	
 }
