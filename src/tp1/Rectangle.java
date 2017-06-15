@@ -1,6 +1,10 @@
 package tp1;
 
-public class Rectangle {
+import java.util.Random;
+
+import tp2.Figure;
+
+public class Rectangle extends Figure{
 	Point p;
 	int x1,y1;
 	
@@ -47,6 +51,17 @@ public class Rectangle {
 	
 	public void affiche(){
 		System.out.println(this.toString());
+	}
+	protected String getType(){
+		return "RECTANGLE";
+	}
+
+
+	@Override
+	protected Figure getRandomFigure() {
+		Random rd=new Random();
+		// TODO Auto-generated method stub
+		return new Rectangle(new Point(rd.nextInt(), rd.nextInt()), rd.nextInt(), rd.nextInt());
 	}
 	
 	
