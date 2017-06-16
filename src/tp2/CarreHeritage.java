@@ -22,7 +22,7 @@ public class CarreHeritage extends Rectangle{
 	}
 
 	@Override
-	protected String getType() {
+	public String getType() {
 		// TODO Auto-generated method stub
 		return "CARRE";
 	}

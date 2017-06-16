@@ -7,10 +7,13 @@ import tp1.Point;
 public class Carre extends Figure implements Surfacable {
 	private int x;
 	private Point p;
+	private Point[] points;
+
 
 	public Carre(int x, Point p) {
 		this.x = x;
 		this.p = p;
+		this.points = new Point[4];
 	}
 
 	@Override
@@ -25,14 +28,14 @@ public class Carre extends Figure implements Surfacable {
 	}
 
 	@Override
-	protected Figure getRandomFigure() {
+	public Figure getRandomFigure() {
 		Random rd = new Random();
 		// TODO Auto-generated method stub
 		return new Carre(rd.nextInt(), new Point(rd.nextInt(), rd.nextInt()));
 	}
 
 	@Override
-	protected String getType() {
+	public String getType() {
 		// TODO Auto-generated method stub
 		return "CARRE";
 	}
@@ -43,6 +46,16 @@ public class Carre extends Figure implements Surfacable {
 
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Point[] getPoint() {
+		points[0] = this.p;
+		points[1] = new Point(p.getX() + this.x, p.getY());
+		points[2] = new Point(p.getX(), p.getY() + this.x);
+		points[3] = new Point(p.getX() + this.x, p.getY() + this.x);
+
+		return points;
 	}
 
 	/*

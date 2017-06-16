@@ -8,11 +8,14 @@ import tp2.Surfacable;
 public class Rectangle extends Figure implements Surfacable {
 	private Point p;
 	private int x1, y1;
+	private Point[] points;
+
 
 	public Rectangle(Point p, int x1, int y1) {
 		this.p = p;
 		this.x1 = x1;
 		this.y1 = y1;
+		this.points=new Point[4];
 	}
 
 	public Point getPointBasGauche() {
@@ -67,12 +70,12 @@ public class Rectangle extends Figure implements Surfacable {
 		System.out.println(this.toString());
 	}
 
-	protected String getType() {
+	public String getType() {
 		return "RECTANGLE";
 	}
 
 	@Override
-	protected Figure getRandomFigure() {
+	public Figure getRandomFigure() {
 		Random rd = new Random();
 		// TODO Auto-generated method stub
 		return new Rectangle(new Point(rd.nextInt(), rd.nextInt()), rd.nextInt(), rd.nextInt());
@@ -83,6 +86,16 @@ public class Rectangle extends Figure implements Surfacable {
 
 		// TODO Auto-generated method stub
 		return Math.abs(this.x1 * this.y1);
+	}
+
+	@Override
+	public Point[] getPoint() {
+		this.points[0]=getPointBasDroit();
+		this.points[1]=getPointBasGauche();
+		this.points[2]=getPointHautDroit();
+		this.points[3]=getPointHautGauche();
+		// TODO Auto-generated method stub
+		return points;
 	}
 
 }

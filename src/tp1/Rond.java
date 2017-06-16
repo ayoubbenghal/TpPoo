@@ -8,10 +8,12 @@ import tp2.Surfacable;
 public class Rond extends Figure implements Surfacable {
 	private int r;
 	private Point p;
+	private Point[] points;
 
 	public Rond(int r, Point p) {
 		this.r = r;
 		this.p = p;
+		this.points=new Point[1];
 	}
 
 	public int getR() {
@@ -32,14 +34,14 @@ public class Rond extends Figure implements Surfacable {
 	}
 
 	@Override
-	protected Figure getRandomFigure() {
+	public Figure getRandomFigure() {
 		Random rd = new Random();
 		// TODO Auto-generated method stub
 		return new Rond(rd.nextInt(), new Point(rd.nextInt(), rd.nextInt()));
 	}
 
 	@Override
-	protected String getType() {
+	public String getType() {
 		// TODO Auto-generated method stub
 		return "ROND";
 	}
@@ -48,5 +50,11 @@ public class Rond extends Figure implements Surfacable {
 	public double surface() {
 		// TODO Auto-generated method stub
 		return Math.PI * Math.pow(r, 2);
+	}
+
+	@Override
+	public Point[] getPoint() {
+		points[0]=this.p;
+		return points;
 	}
 }

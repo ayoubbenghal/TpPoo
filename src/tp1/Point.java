@@ -6,10 +6,12 @@ import tp2.Figure;
 
 public class Point extends Figure {
 	private int x, y;
+	private Point[] points;
 
 	public Point(int x, int y) {
 		this.x = x;
 		this.y = y;
+		this.points=new Point[1];
 	}
 
 	public int getX() {
@@ -33,23 +35,29 @@ public class Point extends Figure {
 	}
 
 	@Override
-	protected Figure getRandomFigure() {
+	public Figure getRandomFigure() {
 		Random rd = new Random();
 		// TODO Auto-generated method stub
 		return new Point(rd.nextInt(), rd.nextInt());
 	}
 
 	@Override
-	protected String getType() {
+	public String getType() {
 		// TODO Auto-generated method stub
 		return "POINT";
 	}
 
 	@Override
-	protected void affiche() {
+	public void affiche() {
 		System.out.println(this.toString());
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Point[] getPoint() {
+		this.points[0]=this;
+		return points;
 	}
 
 }
