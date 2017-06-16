@@ -1,5 +1,7 @@
 package tp2;
 
+import java.util.Collection;
+
 import tp1.Point;
 
 public abstract class Figure {
@@ -9,6 +11,8 @@ public abstract class Figure {
 	public abstract String getType();
 	protected abstract void affiche();
 	public abstract Point[] getPoint();
+	public abstract Collection<Point>getPointsCollection();
+	public abstract boolean couvre(Point p);
 	
 	
 	

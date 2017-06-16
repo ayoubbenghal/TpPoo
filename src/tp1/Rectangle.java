@@ -1,5 +1,7 @@
 package tp1;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 
 import tp2.Figure;
@@ -9,6 +11,7 @@ public class Rectangle extends Figure implements Surfacable {
 	private Point p;
 	private int x1, y1;
 	private Point[] points;
+	private Collection<Point>pointsCollection;
 
 
 	public Rectangle(Point p, int x1, int y1) {
@@ -16,6 +19,7 @@ public class Rectangle extends Figure implements Surfacable {
 		this.x1 = x1;
 		this.y1 = y1;
 		this.points=new Point[4];
+		this.pointsCollection=new ArrayList<>();
 	}
 
 	public Point getPointBasGauche() {
@@ -96,6 +100,45 @@ public class Rectangle extends Figure implements Surfacable {
 		this.points[3]=getPointHautGauche();
 		// TODO Auto-generated method stub
 		return points;
+	}
+
+	@Override
+	public Collection<Point> getPointsCollection() {
+		this.pointsCollection.add(getPointBasDroit());
+		this.pointsCollection.add(getPointBasGauche());
+		this.pointsCollection.add(getPointHautDroit());
+		this.pointsCollection.add(getPointHautGauche());
+		// TODO Auto-generated method stub
+		return pointsCollection;
+	}
+	public boolean isBetweenX(Point p0,Point p1, Point p2){
+		/*if(p1.equals(p0) || p2.isEgal(p0)) return true;
+		
+		
+		else */
+		if(p0.getX()<p2.getX() && p0.getX()>p1.getX())
+			return true;
+		else return false;
+		
+		
+		
+	} 
+	public boolean isBetweenY(Point p0,Point p1,Point p2){
+		if(p0.getY()<p2.getY() && p0.getY()>p1.getY()) return true;
+		else return false;
+	}
+
+	@Override
+	public boolean couvre(Point p) {
+		if(p.isEgal(getPointBasDroit())|| p.isEgal(getPointBasGauche())
+				||p.isEgal(getPointHautDroit())||p.isEgal(getPointHautGauche())) return true;
+		if(isBetweenX(p, getPointBasGauche(), getPointBasDroit()) &&
+				isBetweenY(p, getPointBasGauche(), getPointHautGauche()))
+		return true;
+		
+		 return false;
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -1,5 +1,7 @@
 package tp1;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Random;
 
 import tp2.Figure;
@@ -9,11 +11,13 @@ public class Rond extends Figure implements Surfacable {
 	private int r;
 	private Point p;
 	private Point[] points;
+	private Collection<Point>pointsCollection;
 
 	public Rond(int r, Point p) {
 		this.r = r;
 		this.p = p;
 		this.points=new Point[1];
+		this.pointsCollection=new ArrayList<>();
 	}
 
 	public int getR() {
@@ -56,5 +60,22 @@ public class Rond extends Figure implements Surfacable {
 	public Point[] getPoint() {
 		points[0]=this.p;
 		return points;
+	}
+
+	@Override
+	public Collection<Point> getPointsCollection() {
+		this.pointsCollection.add(this.p);
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+	@Override
+	public boolean couvre(Point p) {
+		if(p.getX()<=(this.p.getX()+this.r) && p.getX()>=(this.p.getX()-this.r) 
+				&& p.getY()<=(this.p.getY()+this.r) && p.getY()>=(this.p.getY()-r))
+			return true;
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
