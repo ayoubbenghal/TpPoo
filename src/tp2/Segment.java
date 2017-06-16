@@ -2,6 +2,8 @@ package tp2;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import tp1.Point;
@@ -25,6 +27,7 @@ public class Segment extends Figure {
 		this.horizontal = horizontal;
 		this.points = new Point[2];
 		this.pointCollection = new ArrayList<>();
+
 	}
 
 	public Point getPointDebut() {
@@ -93,7 +96,7 @@ public class Segment extends Figure {
 		else
 			this.pointCollection.add(new Point(this.pointDebut.getX(), (this.pointDebut.getY() + this.longueur)));
 		// TODO Auto-generated method stub
-		return null;
+		return this.pointCollection;
 	}
 
 	@Override
@@ -118,17 +121,29 @@ public class Segment extends Figure {
 
 	@Override
 	public boolean estEgal(Figure figure) {
-		if(figure instanceof Segment){
-			Segment seg=(Segment)figure;
-			if(this.pointDebut.isEgal(seg.getPointDebut()) && this.longueur==seg.getLongueur()
-					&& this.horizontal==seg.isHorizontal())
+		if (figure instanceof Segment) {
+			Segment seg = (Segment) figure;
+			if (this.pointDebut.isEgal(seg.getPointDebut()) && this.longueur == seg.getLongueur()
+					&& this.horizontal == seg.isHorizontal())
 				return true;
-			else 
+			else
 				return false;
 		}
-			
+
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public double distanceOrigine() {
+		List<Double> listDistance = new ArrayList<>();
+		for (Point point : getPointsCollection()) {
+			listDistance.add(point.distanceOrigine());
+
+		}
+		Collections.sort(listDistance);
+		// TODO Auto-generated method stub
+		return listDistance.get(0);
 	}
 
 }

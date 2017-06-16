@@ -7,6 +7,8 @@ import java.util.Random;
 import tp2.Figure;
 
 public class Point extends Figure {
+	private final int INIT_X = 25;
+	private final int INIT_Y = 25;
 	private int x, y;
 	private Point[] points;
 	private Collection<Point> pointsCollection;
@@ -16,6 +18,7 @@ public class Point extends Figure {
 		this.y = y;
 		this.points = new Point[1];
 		this.pointsCollection = new ArrayList<>();
+
 	}
 
 	public int getX() {
@@ -24,6 +27,14 @@ public class Point extends Figure {
 
 	public int getY() {
 		return y;
+	}
+
+	public int getINIT_X() {
+		return INIT_X;
+	}
+
+	public int getINIT_Y() {
+		return INIT_Y;
 	}
 
 	@Override
@@ -80,15 +91,32 @@ public class Point extends Figure {
 
 	@Override
 	protected boolean estEgal(Figure figure) {
-		if(figure instanceof Point){
-			Point point=(Point)figure;
-			if(this.getX()==point.getX() && this.getY()==point.getY())
+		if (figure instanceof Point) {
+			Point point = (Point) figure;
+			if (this.getX() == point.getX() && this.getY() == point.getY())
 				return true;
-			else return false;
+			else
+				return false;
 		}
-		
+
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public double distanceOrigine() {
+		double dist1, dist2;
+		if (INIT_X > this.x)
+			dist1 = INIT_X - this.x;
+		else
+			dist1 = this.x - INIT_X;
+		if (INIT_Y > this.y)
+			dist2 = this.INIT_Y - this.y;
+		else
+			dist2 = this.y - INIT_Y;
+
+		// TODO Auto-generated method stub
+		return dist1 < dist2 ? dist1 : dist2;
 	}
 
 }

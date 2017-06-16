@@ -20,8 +20,13 @@ public class Rectangle extends Figure implements Surfacable {
 		this.y1 = y1;
 		this.points = new Point[4];
 		this.pointsCollection = new ArrayList<>();
+		/*
+		 * for (int i = 0; i < points.length; i++)
+		 * this.pointsCollection.add(points[i]);
+		 */
+
 	}
-	
+
 	public Point getP() {
 		return p;
 	}
@@ -161,38 +166,68 @@ public class Rectangle extends Figure implements Surfacable {
 
 	@Override
 	public boolean estEgal(Figure figure) {
-		boolean b=false;
-		if( figure instanceof Carre ){
-			Carre c=(Carre)figure;
-			if(this.getP().estEgal(c.getP()) && this.x1==c.getX() && this.y1==c.getX())
+		boolean b = false;
+		if (figure instanceof Carre) {
+			Carre c = (Carre) figure;
+			if (this.getP().estEgal(c.getP()) && this.x1 == c.getX() && this.y1 == c.getX())
 				return true;
-			/*for (int i = 0; i < c.getPoint().length; i++) {
-				if(this.getPoint()[i]!=c.getPoint()[i])
-				b=false;
-				else 
-					return true;
-			}*/
+			/*
+			 * for (int i = 0; i < c.getPoint().length; i++) {
+			 * if(this.getPoint()[i]!=c.getPoint()[i]) b=false; else return
+			 * true; }
+			 */
 			else
-			b=false;
-		}else if(figure instanceof Rectangle){
-			Rectangle rect=(Rectangle)figure;
-			if(this.p.estEgal(rect.getP()) && this.x1==rect.getX1() && this.y1==rect.y1)
+				b = false;
+		} else if (figure instanceof Rectangle) {
+			Rectangle rect = (Rectangle) figure;
+			if (this.p.estEgal(rect.getP()) && this.x1 == rect.getX1() && this.y1 == rect.y1)
 				return true;
-			/*for (int i = 0; i < rect.getPoint().length; i++) {
-				if(this.getPoint()[i]!=rect.getPoint()[i])
-					b=false;
-				else 
-					return true;
-			}*/
+			/*
+			 * for (int i = 0; i < rect.getPoint().length; i++) {
+			 * if(this.getPoint()[i]!=rect.getPoint()[i]) b=false; else return
+			 * true; }
+			 */
 			else
-			return false;
-			
-			
+				return false;
+
 		}
 		return b;
-		
-			
+
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public double distanceOrigine() {
+		/*
+		 * Collection<Double>distances=new ArrayList<>();
+		 * distances.add(getPointBasDroit().distanceOrigine());
+		 * distances.add(getPointBasGauche().distanceOrigine());
+		 * distances.add(getPointHautDroit().distanceOrigine());
+		 * distances.add(getPointHautGauche().distanceOrigine()); double min;
+		 * Iterator<Double>
+		 */
+
+		double distances[] = new double[4];
+		distances[0] = getPointBasDroit().distanceOrigine();
+		distances[1] = getPointBasGauche().distanceOrigine();
+		distances[2] = getPointHautDroit().distanceOrigine();
+		distances[3] = getPointHautGauche().distanceOrigine();
+		double min = 0;
+
+		for (int i = 0; i < distances.length; i++) {
+			for (int j = 1; j < distances.length; j++) {
+				if (distances[i] < distances[j]) {
+					min = distances[i];
+
+				} else {
+					min = distances[j];
+					i = j;
+				}
+
+			}
+		}
+		// TODO Auto-generated method stub
+		return min;
 	}
 
 }

@@ -2,6 +2,8 @@ package tp2;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import tp1.Point;
@@ -9,32 +11,24 @@ import tp1.Point;
 public class Carre extends Figure implements Surfacable {
 	private int x;
 	private Point p;
-	
 
 	private Point[] points;
-	private Collection<Point>pointCollection;
-
+	private Collection<Point> pointCollection;
 
 	public Carre(int x, Point p) {
 		this.x = x;
 		this.p = p;
 		this.points = new Point[4];
-		this.pointCollection=new ArrayList<>();
+		this.pointCollection = new ArrayList<>();
 	}
 
-	
-	
 	public int getX() {
 		return x;
 	}
 
-
-
 	public Point getP() {
 		return p;
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -87,40 +81,56 @@ public class Carre extends Figure implements Surfacable {
 		// TODO Auto-generated method stub
 		return this.pointCollection;
 	}
-	
-	public boolean isBetweenX(Point p0,Point p1,Point p2){
-		if(p0.getX()<=p2.getX() && p0.getX()>=p1.getX())
+
+	public boolean isBetweenX(Point p0, Point p1, Point p2) {
+		if (p0.getX() <= p2.getX() && p0.getX() >= p1.getX())
 			return true;
-		else return false;
+		else
+			return false;
 	}
-	public boolean isBetweenY(Point p0,Point p1,Point p2){
-		if(p0.getY()<=p2.getY() && p0.getY()>=p1.getY()) return true;
-		else return false;
+
+	public boolean isBetweenY(Point p0, Point p1, Point p2) {
+		if (p0.getY() <= p2.getY() && p0.getY() >= p1.getY())
+			return true;
+		else
+			return false;
 	}
 
 	@Override
 	public boolean couvre(Point p) {
-		if(isBetweenX(p, this.p, new Point(this.p.getX()+this.x, this.p.getY())) &&
-				isBetweenY(p, this.p, new Point(this.p.getX(), this.p.getY()+this.x)))
-		return true;
-		
-		 return false;
+		if (isBetweenX(p, this.p, new Point(this.p.getX() + this.x, this.p.getY()))
+				&& isBetweenY(p, this.p, new Point(this.p.getX(), this.p.getY() + this.x)))
+			return true;
+
+		return false;
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public boolean estEgal(Figure figure) {
-		
-		if(figure instanceof Carre){
-			Carre carre=(Carre)figure;
-			if(this.p.isEgal(carre.getP()) && this.x==carre.getX())
+
+		if (figure instanceof Carre) {
+			Carre carre = (Carre) figure;
+			if (this.p.isEgal(carre.getP()) && this.x == carre.getX())
 				return true;
-			else 
+			else
 				return false;
 		}
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public double distanceOrigine() {
+		List<Double> listDistances = new ArrayList<>();
+		for (Point point : getPointsCollection()) {
+			listDistances.add(point.distanceOrigine());
+		}
+		Collections.sort(listDistances);
+
+		// TODO Auto-generated method stub
+		return listDistances.get(0);
 	}
 
 	/*

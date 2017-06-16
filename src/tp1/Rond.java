@@ -11,13 +11,14 @@ public class Rond extends Figure implements Surfacable {
 	private int r;
 	private Point p;
 	private Point[] points;
-	private Collection<Point>pointsCollection;
+	private Collection<Point> pointsCollection;
 
 	public Rond(int r, Point p) {
 		this.r = r;
 		this.p = p;
-		this.points=new Point[1];
-		this.pointsCollection=new ArrayList<>();
+		this.points = new Point[1];
+		this.pointsCollection = new ArrayList<>();
+
 	}
 
 	public int getR() {
@@ -58,7 +59,7 @@ public class Rond extends Figure implements Surfacable {
 
 	@Override
 	public Point[] getPoint() {
-		points[0]=this.p;
+		points[0] = this.p;
 		return points;
 	}
 
@@ -68,12 +69,11 @@ public class Rond extends Figure implements Surfacable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
 	@Override
 	public boolean couvre(Point p) {
-		if(p.getX()<=(this.p.getX()+this.r) && p.getX()>=(this.p.getX()-this.r) 
-				&& p.getY()<=(this.p.getY()+this.r) && p.getY()>=(this.p.getY()-r))
+		if (p.getX() <= (this.p.getX() + this.r) && p.getX() >= (this.p.getX() - this.r)
+				&& p.getY() <= (this.p.getY() + this.r) && p.getY() >= (this.p.getY() - r))
 			return true;
 		// TODO Auto-generated method stub
 		return false;
@@ -81,16 +81,24 @@ public class Rond extends Figure implements Surfacable {
 
 	@Override
 	public boolean estEgal(Figure figure) {
-		if(figure instanceof Rond){
-			Rond rond=(Rond)figure;
-			if(rond.getP()==this.p && rond.getR()==this.r)
+		if (figure instanceof Rond) {
+			Rond rond = (Rond) figure;
+			if (rond.getP() == this.p && rond.getR() == this.r)
 				return true;
-			else return false;
-		}else{
+			else
+				return false;
+		} else {
 			return false;
 		}
-			
+
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public double distanceOrigine() {
+
+		// TODO Auto-generated method stub
+		return this.p.distanceOrigine();
 	}
 }

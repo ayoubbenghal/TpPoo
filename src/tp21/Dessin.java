@@ -1,12 +1,12 @@
 package tp21;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import tp2.Figure;
 
 public class Dessin {
-	private Collection<Figure> figures;
+	private List<Figure> figures;
 
 	public Dessin() {
 		figures = new ArrayList<Figure>();
@@ -15,7 +15,8 @@ public class Dessin {
 		
 		return figures.add(figure);
 	}
-	public Collection<Figure> getFigures() {
+
+	public List<Figure> getFigures() {
 		return figures;
 	}
 

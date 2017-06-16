@@ -3,7 +3,7 @@ package tp2;
 import tp1.Point;
 import tp1.Rectangle;
 
-public class CarreHeritage extends Rectangle{
+public class CarreHeritage extends Rectangle {
 
 	public CarreHeritage(Point p, int x1, int y1) {
 		super(p, x1, y1);
@@ -26,7 +26,5 @@ public class CarreHeritage extends Rectangle{
 		// TODO Auto-generated method stub
 		return "CARRE";
 	}
-	
-	
 
 }

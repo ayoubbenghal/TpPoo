@@ -44,10 +44,9 @@ public class Test2 {
 		System.out.println(seg.couvre(new Point(8, 6)));
 		System.out.println(seg.couvre(new Point(5, 5)));
 		System.out.println(seg.couvre(new Point(1, 7)));
-		Point p1=new Point(1, 7);
-		Point p2=new Point(3, 10);
-		
-		
+		Point p1 = new Point(1, 7);
+		Point p2 = new Point(3, 10);
+
 		Dessin d = new Dessin();
 		d.add(r);
 		d.add(seg);
@@ -64,7 +63,10 @@ public class Test2 {
 		System.out.println("RECTANGLE CARRE ET TRUE");
 		System.out.println(seg.estEgal(seg2));
 		System.out.println(r2.estEgal(c));
-		
+
+		System.out.println(r2.distanceOrigine());
+		System.out.println(seg.distanceOrigine());
+		System.out.println(rond.distanceOrigine());
 
 	}
 

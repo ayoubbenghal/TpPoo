@@ -2,7 +2,10 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import tp1.Point;
@@ -118,11 +121,65 @@ public class FigureUtil {
 		Iterator<Figure> it = dessin.getFigures().iterator();
 		Figure f;
 		while (it.hasNext()) {
-			f=it.next();
+			f = it.next();
 			if (f.couvre(p))
 				return f;
 		}
 
 		return null;
+	}
+
+	public static List<Figure> trieProcheOrigine(Dessin d) {
+		HashMap<Figure, Double> mapFigure = new HashMap<>();
+		for (Figure f : d.getFigures()) {
+			mapFigure.put(f, f.distanceOrigine());
+
+		}
+		List<Double> distances = new ArrayList<>();
+		distances.addAll(mapFigure.values());
+		Collections.sort(distances);
+		List<Figure> figures = new ArrayList<>();
+
+		for (Double dist : distances) {
+			for (Figure f : mapFigure.keySet()) {
+				if (mapFigure.get(f) == dist)
+					figures.add(f);
+			}
+		}
+
+		return figures;
+	}
+
+	public static List<Figure> trieDominant(Dessin dessin) {
+		List<Figure> figures = new ArrayList<>();
+		HashMap<Figure, Double> mapFigures = new HashMap<>();
+		Carre c;
+		Rectangle rec;
+		Rond rond;
+		for (Figure figure : dessin.getFigures()) {
+			if (figure instanceof Carre) {
+				c = (Carre) figure;
+				mapFigures.put(figure, c.surface());
+			} else if (figure instanceof Rectangle) {
+				rec = (Rectangle) figure;
+				mapFigures.put(figure, rec.surface());
+
+			} else if (figure instanceof Rond) {
+				rond = (Rond) figure;
+				mapFigures.put(figure, rond.surface());
+			}
+
+		}
+		List<Double> surfaces = new ArrayList<>();
+		surfaces.addAll(mapFigures.values());
+		Collections.sort(surfaces);
+		for (Double d : surfaces) {
+			for (Figure f : mapFigures.keySet()) {
+				if (mapFigures.get(f) == d)
+					figures.add(f);
+			}
+		}
+		return figures;
+
 	}
 }
