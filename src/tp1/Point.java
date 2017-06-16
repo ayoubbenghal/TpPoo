@@ -9,13 +9,13 @@ import tp2.Figure;
 public class Point extends Figure {
 	private int x, y;
 	private Point[] points;
-	private Collection<Point>pointsCollection;
+	private Collection<Point> pointsCollection;
 
 	public Point(int x, int y) {
 		this.x = x;
 		this.y = y;
-		this.points=new Point[1];
-		this.pointsCollection=new ArrayList<>();
+		this.points = new Point[1];
+		this.pointsCollection = new ArrayList<>();
 	}
 
 	public int getX() {
@@ -60,7 +60,7 @@ public class Point extends Figure {
 
 	@Override
 	public Point[] getPoint() {
-		this.points[0]=this;
+		this.points[0] = this;
 		return points;
 	}
 
@@ -73,9 +73,22 @@ public class Point extends Figure {
 
 	@Override
 	public boolean couvre(Point p) {
-		
+
 		// TODO Auto-generated method stub
 		return p.isEgal(this);
+	}
+
+	@Override
+	protected boolean estEgal(Figure figure) {
+		if(figure instanceof Point){
+			Point point=(Point)figure;
+			if(this.getX()==point.getX() && this.getY()==point.getY())
+				return true;
+			else return false;
+		}
+		
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

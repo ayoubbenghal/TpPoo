@@ -78,4 +78,19 @@ public class Rond extends Figure implements Surfacable {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public boolean estEgal(Figure figure) {
+		if(figure instanceof Rond){
+			Rond rond=(Rond)figure;
+			if(rond.getP()==this.p && rond.getR()==this.r)
+				return true;
+			else return false;
+		}else{
+			return false;
+		}
+			
+		// TODO Auto-generated method stub
+		
+	}
 }

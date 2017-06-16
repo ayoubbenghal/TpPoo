@@ -13,6 +13,7 @@ public abstract class Figure {
 	public abstract Point[] getPoint();
 	public abstract Collection<Point>getPointsCollection();
 	public abstract boolean couvre(Point p);
+	protected abstract boolean estEgal(Figure figure);
 	
 	
 	

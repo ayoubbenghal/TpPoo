@@ -9,6 +9,8 @@ import tp1.Point;
 public class Carre extends Figure implements Surfacable {
 	private int x;
 	private Point p;
+	
+
 	private Point[] points;
 	private Collection<Point>pointCollection;
 
@@ -19,6 +21,20 @@ public class Carre extends Figure implements Surfacable {
 		this.points = new Point[4];
 		this.pointCollection=new ArrayList<>();
 	}
+
+	
+	
+	public int getX() {
+		return x;
+	}
+
+
+
+	public Point getP() {
+		return p;
+	}
+
+
 
 	@Override
 	public String toString() {
@@ -91,6 +107,20 @@ public class Carre extends Figure implements Surfacable {
 		 return false;
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean estEgal(Figure figure) {
+		
+		if(figure instanceof Carre){
+			Carre carre=(Carre)figure;
+			if(this.p.isEgal(carre.getP()) && this.x==carre.getX())
+				return true;
+			else 
+				return false;
+		}
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	/*

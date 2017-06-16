@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
+import tp2.Carre;
 import tp2.Figure;
 import tp2.Surfacable;
 
@@ -11,15 +12,26 @@ public class Rectangle extends Figure implements Surfacable {
 	private Point p;
 	private int x1, y1;
 	private Point[] points;
-	private Collection<Point>pointsCollection;
-
+	private Collection<Point> pointsCollection;
 
 	public Rectangle(Point p, int x1, int y1) {
 		this.p = p;
 		this.x1 = x1;
 		this.y1 = y1;
-		this.points=new Point[4];
-		this.pointsCollection=new ArrayList<>();
+		this.points = new Point[4];
+		this.pointsCollection = new ArrayList<>();
+	}
+	
+	public Point getP() {
+		return p;
+	}
+
+	public int getX1() {
+		return x1;
+	}
+
+	public int getY1() {
+		return y1;
 	}
 
 	public Point getPointBasGauche() {
@@ -94,10 +106,10 @@ public class Rectangle extends Figure implements Surfacable {
 
 	@Override
 	public Point[] getPoint() {
-		this.points[0]=getPointBasDroit();
-		this.points[1]=getPointBasGauche();
-		this.points[2]=getPointHautDroit();
-		this.points[3]=getPointHautGauche();
+		this.points[0] = getPointBasDroit();
+		this.points[1] = getPointBasGauche();
+		this.points[2] = getPointHautDroit();
+		this.points[3] = getPointHautGauche();
 		// TODO Auto-generated method stub
 		return points;
 	}
@@ -111,34 +123,76 @@ public class Rectangle extends Figure implements Surfacable {
 		// TODO Auto-generated method stub
 		return pointsCollection;
 	}
-	public boolean isBetweenX(Point p0,Point p1, Point p2){
-		/*if(p1.equals(p0) || p2.isEgal(p0)) return true;
-		
-		
-		else */
-		if(p0.getX()<p2.getX() && p0.getX()>p1.getX())
+
+	public boolean isBetweenX(Point p0, Point p1, Point p2) {
+		/*
+		 * if(p1.equals(p0) || p2.isEgal(p0)) return true;
+		 * 
+		 * 
+		 * else
+		 */
+		if (p0.getX() < p2.getX() && p0.getX() > p1.getX())
 			return true;
-		else return false;
-		
-		
-		
-	} 
-	public boolean isBetweenY(Point p0,Point p1,Point p2){
-		if(p0.getY()<p2.getY() && p0.getY()>p1.getY()) return true;
-		else return false;
+		else
+			return false;
+
+	}
+
+	public boolean isBetweenY(Point p0, Point p1, Point p2) {
+		if (p0.getY() < p2.getY() && p0.getY() > p1.getY())
+			return true;
+		else
+			return false;
 	}
 
 	@Override
 	public boolean couvre(Point p) {
-		if(p.isEgal(getPointBasDroit())|| p.isEgal(getPointBasGauche())
-				||p.isEgal(getPointHautDroit())||p.isEgal(getPointHautGauche())) return true;
-		if(isBetweenX(p, getPointBasGauche(), getPointBasDroit()) &&
-				isBetweenY(p, getPointBasGauche(), getPointHautGauche()))
-		return true;
-		
-		 return false;
+		if (p.isEgal(getPointBasDroit()) || p.isEgal(getPointBasGauche()) || p.isEgal(getPointHautDroit())
+				|| p.isEgal(getPointHautGauche()))
+			return true;
+		if (isBetweenX(p, getPointBasGauche(), getPointBasDroit())
+				&& isBetweenY(p, getPointBasGauche(), getPointHautGauche()))
+			return true;
+
+		return false;
 		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean estEgal(Figure figure) {
+		boolean b=false;
+		if( figure instanceof Carre ){
+			Carre c=(Carre)figure;
+			if(this.getP().estEgal(c.getP()) && this.x1==c.getX() && this.y1==c.getX())
+				return true;
+			/*for (int i = 0; i < c.getPoint().length; i++) {
+				if(this.getPoint()[i]!=c.getPoint()[i])
+				b=false;
+				else 
+					return true;
+			}*/
+			else
+			b=false;
+		}else if(figure instanceof Rectangle){
+			Rectangle rect=(Rectangle)figure;
+			if(this.p.estEgal(rect.getP()) && this.x1==rect.getX1() && this.y1==rect.y1)
+				return true;
+			/*for (int i = 0; i < rect.getPoint().length; i++) {
+				if(this.getPoint()[i]!=rect.getPoint()[i])
+					b=false;
+				else 
+					return true;
+			}*/
+			else
+			return false;
+			
+			
+		}
+		return b;
 		
+			
+		// TODO Auto-generated method stub
 	}
 
 }

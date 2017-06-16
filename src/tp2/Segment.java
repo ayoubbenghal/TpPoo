@@ -27,6 +27,18 @@ public class Segment extends Figure {
 		this.pointCollection = new ArrayList<>();
 	}
 
+	public Point getPointDebut() {
+		return pointDebut;
+	}
+
+	public int getLongueur() {
+		return longueur;
+	}
+
+	public boolean isHorizontal() {
+		return horizontal;
+	}
+
 	@Override
 	public String toString() {
 		if (horizontal) {
@@ -102,6 +114,21 @@ public class Segment extends Figure {
 
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public boolean estEgal(Figure figure) {
+		if(figure instanceof Segment){
+			Segment seg=(Segment)figure;
+			if(this.pointDebut.isEgal(seg.getPointDebut()) && this.longueur==seg.getLongueur()
+					&& this.horizontal==seg.isHorizontal())
+				return true;
+			else 
+				return false;
+		}
+			
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

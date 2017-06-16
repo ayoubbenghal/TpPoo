@@ -2,6 +2,7 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Random;
 
 import tp1.Point;
@@ -11,6 +12,7 @@ import tp1.Rond;
 import tp2.Carre;
 import tp2.Figure;
 import tp2.Segment;
+import tp21.Dessin;
 
 public class FigureUtil {
 	// static PointFinal p=new PointFinal();
@@ -82,7 +84,7 @@ public class FigureUtil {
 
 		}
 		points = new Point[cpt];
-		
+
 		int i = 0;
 		for (Figure figure : figures)
 			for (Point point : figure.getPoint()) {
@@ -93,21 +95,34 @@ public class FigureUtil {
 
 		return points;
 	}
- 
-	public static Collection<Figure> genere(int n){
-		Collection<Figure>figures=new ArrayList<>(n);
+
+	public static Collection<Figure> genere(int n) {
+		Collection<Figure> figures = new ArrayList<>(n);
 		for (Figure figure : figures) {
-			figure=getRandomFigure();
+			figure = getRandomFigure();
 			figures.add(figure);
 		}
 		return figures;
 	}
-	
-	public static Collection<Point> getPointCollection(int n){
-		Collection<Point>points=new ArrayList<>();
+
+	public static Collection<Point> getPointCollection(int n) {
+		Collection<Point> points = new ArrayList<>();
 		for (Figure figure : genere(n)) {
 			points.addAll(figure.getPointsCollection());
 		}
 		return points;
+	}
+
+	public static Figure getFigureEn(Point p, Dessin dessin) {
+
+		Iterator<Figure> it = dessin.getFigures().iterator();
+		Figure f;
+		while (it.hasNext()) {
+			f=it.next();
+			if (f.couvre(p))
+				return f;
+		}
+
+		return null;
 	}
 }
